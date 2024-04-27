@@ -17,6 +17,11 @@ function cd...  { cd ..\.. }
 function cd.... { cd ..\..\.. }
 
 # useful functions
+
+function close {
+    exit
+}
+
 function uptime {
     $bootuptime = (Get-CimInstance -ClassName Win32_OperatingSystem).LastBootUpTime
     $CurrentDate = Get-Date
