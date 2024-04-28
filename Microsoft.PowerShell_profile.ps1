@@ -1,27 +1,45 @@
-# nerd font support
+# Start oh-my-posh with shell for nerd font support
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\aliens.omp.json" | Invoke-Expression
 
-# Environment Variables
-$dev = "E:\"
+# PowerToys CommandNotFound module
+Import-Module "C:\Users\thede\AppData\Local\PowerToys\WinUI3Apps\..\WinGetCommandNotFound.psd1"
+
+# Shortcut directory environment variables
 $projects = "E:\Projects"
+$web = "E:\Projects\Web"
 $tools = "E:\Tools"
 $vim = "C:\Users\thede\AppData\Local\nvim"
-$config = "E:\Tools\configs"
+$vscode = "C:\Users\thede\AppData\Roaming\Code\User"
+$firefox = "C:\Users\thede\AppData\Roaming\Mozilla\Firefox\Profiles\6b52w6gg.default-nightly-1713989535522\chrome"
+$config = "C:\Users\thede\OneDrive\Documents\PowerShell"
 
-# aliases
-New-Alias -Name vim -Value nvim
-New-Alias -Name vi -Value nvim
+# Program shortcut aliases
+Set-Alias lvim 'C:\Users\thede\AppData\Roaming\lunarvim\lvim\utils\bin\lvim.ps1'
+Set-Alias vim 'nvim'
 
 # Useful shortcuts for traversing directories
 function cd...  { cd ..\.. }
 function cd.... { cd ..\..\.. }
 
-# useful functions
-
+# Exit shortcut
 function close {
     exit
 }
 
+# Load shell profile changes
+function reload-profile {
+        & $profile
+}
+
+# Create file linux-like
+function touch($file) {
+    "" | Out-File $file -Encoding ASCII
+}
+
+# Speed up Invoke-WebRequest
+$ProgressPreference = "SilentlyContinue"
+
+# Get system up-time
 function uptime {
     $bootuptime = (Get-CimInstance -ClassName Win32_OperatingSystem).LastBootUpTime
     $CurrentDate = Get-Date
@@ -46,22 +64,3 @@ function uptime {
         Write-Output "Device Uptime --> Days: $($uptime.days), Hours: $($uptime.Hours), Minutes:$($uptime.Minutes)"
     }
 }
-
-function reload-profile {
-        & $profile
-}
-
-
-
-# linux-like functions
-function touch($file) {
-    "" | Out-File $file -Encoding ASCII
-}
-
-# Speed up Invoke-WebRequest
-$ProgressPreference = "SilentlyContinue"
-
-
-
-#PowerToys CommandNotFound module
-Import-Module "C:\Users\thede\AppData\Local\PowerToys\WinUI3Apps\..\WinGetCommandNotFound.psd1"
