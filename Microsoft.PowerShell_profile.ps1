@@ -70,4 +70,4 @@ function tdk_uptime
 }
 
 Clear-Host # Clear shell on launch/reload
-tdk_uptime # Check uptime on launch/reload
+tdk_uptime # Check uptime on launch/read
