@@ -23,7 +23,7 @@ function cd... { Set-Location ..\.. }
 function cd.... { Set-Location ..\..\.. }
 
 # Reboot
-function reboot 
+function reboot
 {
   Do { $InputReboot = Read-Host "Do you wish to reboot now? [y/n]" }
   While ( "y","n" -notcontains $InputReboot )
@@ -47,7 +47,7 @@ function touch($file) { "" | Out-File $file -Encoding ASCII }
 $ProgressPreference = "SilentlyContinue"
 
 # Get system up-time
-function tdk_uptime 
+function tdk_uptime
 {
   $bootuptime = (Get-CimInstance -ClassName Win32_OperatingSystem).LastBootUpTime
   $CurrentDate = Get-Date
