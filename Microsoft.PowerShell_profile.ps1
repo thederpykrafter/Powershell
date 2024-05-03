@@ -8,6 +8,9 @@ Import-Module "C:\Users\thede\AppData\Local\PowerToys\WinUI3Apps\..\WinGetComman
 $projects = "E:\Projects"
 $web = "E:\Projects\Web"
 $tools = "E:\Tools"
+$notes = "C:\Users\thede\Dropbox\Apps\remotely-save\Notes"
+
+# Config shortcuts
 $vim = "C:\Users\thede\AppData\Local\nvim"
 $lvim = "C:\Users\thede\AppData\Local\lvim"
 $vscode = "C:\Users\thede\AppData\Roaming\Code\User"
