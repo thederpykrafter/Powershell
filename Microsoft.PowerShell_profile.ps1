@@ -6,16 +6,8 @@ Import-Module "C:\Users\thede\AppData\Local\PowerToys\WinUI3Apps\..\WinGetComman
 
 # Shortcut directory environment variables
 $projects = "E:\Projects"
-$web = "E:\Projects\Web"
-$tools = "E:\Tools"
 $notes = "C:\Users\thede\Dropbox\Apps\remotely-save\Notes"
-
-# Config shortcuts
-$vim = "C:\Users\thede\AppData\Local\nvim"
-$lvim = "C:\Users\thede\AppData\Local\lvim"
-$vscode = "C:\Users\thede\AppData\Roaming\Code\User"
-$firefox = "C:\Users\thede\AppData\Roaming\Mozilla\Firefox\Profiles\6b52w6gg.default-nightly-1713989535522\chrome"
-$config = "C:\Users\thede\OneDrive\Documents\PowerShell"
+$config = "E:\Tools\configs"
 
 # Program shortcut aliases
 Set-Alias lvim 'C:\Users\thede\AppData\Roaming\lunarvim\lvim\utils\bin\lvim.ps1'
@@ -37,9 +29,6 @@ function reboot
     }
 }
 
-# Exit alternative
-function close { exit }
-
 # Load shell profile changes
 function reload { & $profile }
 
@@ -59,9 +48,8 @@ function tdk_uptime
   if ($uptime.days -gt 0)
   {
     Write-Output "Device Uptime --> Days: $($uptime.days), Hours: $($uptime.Hours), Minutes:$($uptime.Minutes)"
-    Write-Output "Uptime is greater than 1 day, consider rebooting"
     Do
-    { $InputReboot = Read-Host "Do you wish to reboot now? [y/n]" }
+    { $InputReboot = Read-Host "Uptime is greater than 1 day, Reboot now? [y/n]" }
     While ("y","n" -notcontains $InputReboot)
     Switch ($InputReboot)
     {
@@ -72,5 +60,4 @@ function tdk_uptime
   { Write-Output "Device Uptime --> Days: $($uptime.days), Hours: $($uptime.Hours), Minutes:$($uptime.Minutes)" }
 }
 
-Clear-Host # Clear shell on launch/reload
-tdk_uptime # Check uptime on launch/read
+tdk_uptime # Check uptime on launch/reload
