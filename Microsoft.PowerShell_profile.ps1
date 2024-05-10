@@ -13,6 +13,23 @@ $config = "E:\Tools\configs"
 Set-Alias lvim 'C:\Users\thede\AppData\Roaming\lunarvim\lvim\utils\bin\lvim.ps1'
 Set-Alias vim 'nvim'
 
+# Termux ssh connection
+function termux
+{
+  Do {
+      Write-Host "Which Termux Connection?"
+      Write-Host "[1] ADB"
+      Write-Host "[2] SSH"
+      $Termux = Read-Host
+    }
+  While ( "1", "2" -notcontains $Termux )
+    Switch ( $Termux )
+    {
+      "1" { adb forward tcp:8022 tcp:8022}
+      "2" { ssh u0_a676@localhost -p 8022 }
+    }
+}
+
 # Useful shortcuts for traversing directories
 function cd... { Set-Location ..\.. }
 function cd.... { Set-Location ..\..\.. }
