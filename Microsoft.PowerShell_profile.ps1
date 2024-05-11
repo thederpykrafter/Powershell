@@ -11,7 +11,7 @@ $config = "E:\Tools\configs"
 
 # Program shortcut aliases
 Set-Alias lvim 'C:\Users\thede\AppData\Roaming\lunarvim\lvim\utils\bin\lvim.ps1'
-Set-Alias vim 'nvim'
+Set-Alias vi 'nvim'
 
 # Termux ssh connection
 function termux
