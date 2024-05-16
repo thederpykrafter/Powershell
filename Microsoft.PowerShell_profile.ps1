@@ -89,5 +89,5 @@ function delete-empty-dirs {
     Get-ChildItem -Directory -Recurse | Where { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } | Remove-Item -Force
 }
 
-Clear-Host
+Clear-Host # Remove if error gets hidden
 tdk_uptime # Check uptime on launch/reload
