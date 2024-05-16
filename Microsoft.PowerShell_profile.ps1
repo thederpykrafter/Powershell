@@ -7,11 +7,18 @@ Import-Module "C:\Users\thede\AppData\Local\PowerToys\WinUI3Apps\..\WinGetComman
 # Shortcut directory environment variables
 $projects = "E:\Projects"
 $notes = "C:\Users\thede\Dropbox\Apps\remotely-save\Notes"
-$config = "E:\Tools\configs"
+$config = "C:\Users\thede\OneDrive\Documents\Powershell"
 
-# Program shortcut aliases
-Set-Alias lvim 'C:\Users\thede\AppData\Roaming\lunarvim\lvim\utils\bin\lvim.ps1'
-Set-Alias vi 'nvim'
+## WSL aliases ##
+# vim
+function vi { wsl NVIM_APPNAME=tdk.nvim nvim } # My nvim config
+function vim { wsl nvim } # Default NeoVim
+function lazyvim { wsl NVIM_APPNAME=lazyvim nvim } # LazyVim
+
+# git
+function git { wsl git }
+function lazygit { wsl lazygit }
+## End WSL aliases ##
 
 # Termux ssh connection
 function termux
@@ -77,4 +84,10 @@ function tdk_uptime
   { Write-Output "Device Uptime --> Days: $($uptime.days), Hours: $($uptime.Hours), Minutes:$($uptime.Minutes)" }
 }
 
+# delete empty directories
+function delete-empty-dirs {
+    Get-ChildItem -Directory -Recurse | Where { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } | Remove-Item -Force
+}
+
+Clear-Host
 tdk_uptime # Check uptime on launch/reload
