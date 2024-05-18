@@ -1,41 +1,19 @@
 # Start oh-my-posh with shell for nerd font support
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\aliens.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\kali.omp.json" | Invoke-Expression
+# amro, chips, di4am0nd, easy-term, emodipt-extend, kali, 
 
 # PowerToys CommandNotFound module
 Import-Module "C:\Users\thede\AppData\Local\PowerToys\WinUI3Apps\..\WinGetCommandNotFound.psd1"
 
 # Shortcut directory environment variables
-$projects = "E:\Projects"
+$wsl = "\\wsl.localhost\Ubuntu-24.04\home\thederpykrafter\"
+$dev = "D:\"
 $notes = "C:\Users\thede\Dropbox\Apps\remotely-save\Notes"
 $config = "C:\Users\thede\OneDrive\Documents\Powershell"
+$nvim = "C:\Users\thede\AppData\local\nvim"
 
-## WSL aliases ##
-# vim
-function vi { wsl NVIM_APPNAME=tdk.nvim nvim } # My nvim config
-function vim { wsl nvim } # Default NeoVim
-function lazyvim { wsl NVIM_APPNAME=lazyvim nvim } # LazyVim
-
-# git
-function git { wsl git }
-function lazygit { wsl lazygit }
-## End WSL aliases ##
-
-# Termux ssh connection
-function termux
-{
-  Do {
-      Write-Host "Which Termux Connection?"
-      Write-Host "[1] ADB"
-      Write-Host "[2] SSH"
-      $Termux = Read-Host
-    }
-  While ( "1", "2" -notcontains $Termux )
-    Switch ( $Termux )
-    {
-      "1" { adb forward tcp:8022 tcp:8022}
-      "2" { ssh u0_a676@localhost -p 8022 }
-    }
-}
+Set-Alias vi "nvim"
+Set-Alias ls "lsd"
 
 # Useful shortcuts for traversing directories
 function cd... { Set-Location ..\.. }
@@ -55,9 +33,6 @@ function reboot
 
 # Load shell profile changes
 function reload { & $profile }
-
-# Create file linux-like
-function touch($file) { "" | Out-File $file -Encoding ASCII }
 
 # Speed up Invoke-WebRequest
 $ProgressPreference = "SilentlyContinue"
@@ -85,9 +60,9 @@ function tdk_uptime
 }
 
 # delete empty directories
-function delete-empty-dirs {
-    Get-ChildItem -Directory -Recurse | Where { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } | Remove-Item -Force
+function remove-empty-dirs {
+    Get-ChildItem -Directory -Recurse | Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } | Remove-Item -Force
 }
 
-Clear-Host # Remove if error gets hidden
+#Clear-Host # Remove if error gets hidden
 tdk_uptime # Check uptime on launch/reload
