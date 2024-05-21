@@ -1,2 +1,3 @@
 modules/Microsoft.Winget.Client/
+Microsoft.VSCODE_profile.ps1
 /.vscode

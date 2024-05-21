@@ -36,8 +36,8 @@ $(prompt_directory)
 }
 
 # Start oh-my-posh with shell for nerd font support
-#oh-my-posh init pwsh --config "$config\Oh-My-Posh\darkblood.omp.json" | Invoke-Expression
-#oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\darkblood2.omp.json" | Invoke-Expression
+#oh-my-posh init pwsh --config "$config\Oh-My-Posh\cryptic.omp.json" | Invoke-Expression
+#oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\chips.omp.json" | Invoke-Expression
 # amro, chips, di4am0nd, easy-term, emodipt-extend, kali, sim-web
 
 # Remove VS Code Insiders Shortcut from Desktop
