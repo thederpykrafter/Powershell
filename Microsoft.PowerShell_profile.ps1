@@ -8,24 +8,16 @@ function prompt_username {
 }
 
 function prompt_hostname {
-        Write-Output "$GREEN_FG$($env:COMPUTERNAME)`e[0m─┐"
+        Write-Output "$GREEN_FG$($env:COMPUTERNAME)`e[0m─"
 }
 
 function prompt_divider {
-        $prompt_divider_width = $env:USERNAME.Length + $env:COMPUTERNAME.Length + 3
+        $prompt_divider_width = $env:USERNAME.Length + $env:COMPUTERNAME.Length + 2
         Write-Output "$('─' * ($Host.UI.RawUI.WindowSize.Width - $prompt_divider_width))`e"
 }
 
-function get_prompt_directory {
-        Write-Output "$PWD"
-}
-
-function prompt_directory_divider {
-        Write-Output "$(' ' * ($Host.UI.RawUI.WindowSize.Width - $(get_prompt_directory).Length - 3)) ┘"
-}
-
 function prompt_directory {
-        Write-Output "├$($PWD)$(prompt_directory_divider)"
+        Write-Output "├$($PWD)"
 }
 
 
@@ -34,11 +26,6 @@ function prompt {
 $(prompt_directory)
 └$('>' * ($nestedPromptLevel + 1)) "
 }
-
-# Start oh-my-posh with shell for nerd font support
-#oh-my-posh init pwsh --config "$config\Oh-My-Posh\cryptic.omp.json" | Invoke-Expression
-#oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\chips.omp.json" | Invoke-Expression
-# amro, chips, di4am0nd, easy-term, emodipt-extend, kali, sim-web
 
 # Remove VS Code Insiders Shortcut from Desktop
 # Only nescesarry because installed from winget
@@ -110,6 +97,7 @@ function remove-empty-dirs {
 tdk_uptime # Check uptime on launch/reload
 
 
-#34de4b3d-13a8-4540-b76d-b9e8d3851756 PowerToys CommandNotFound module
-Import-Module "C:\Users\thede\AppData\Local\PowerToys\WinUI3Apps\..\WinGetCommandNotFound.psd1"
-#34de4b3d-13a8-4540-b76d-b9e8d3851756
+#f45873b3-b655-43a6-b217-97c00aa0db58 PowerToys CommandNotFound module
+Import-Module -Name Microsoft.WinGet.CommandNotFound
+#f45873b3-b655-43a6-b217-97c00aa0db58
+
