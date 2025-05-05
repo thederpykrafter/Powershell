@@ -101,3 +101,8 @@ tdk_uptime # Check uptime on launch/reload
 Import-Module -Name Microsoft.WinGet.CommandNotFound
 #f45873b3-b655-43a6-b217-97c00aa0db58
 
+if ((Get-Item -Path "HKLM:\System\CurrentControlSet\Control\TimeZoneInformation").GetValue("RealTimeIsUniversal") -ne 0) {
+    Write-Output "Fixing Real Time.."
+    Invoke-Command {reg import $config\TimeFix.reg *>&1 | Out-Null}
+    Write-Output "Done!"
+}
