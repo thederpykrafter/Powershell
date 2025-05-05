@@ -103,6 +103,22 @@ Import-Module -Name Microsoft.WinGet.CommandNotFound
 
 if ((Get-Item -Path "HKLM:\System\CurrentControlSet\Control\TimeZoneInformation").GetValue("RealTimeIsUniversal") -ne 0) {
     Write-Output "Fixing Real Time.."
-    Invoke-Command {reg import $config\TimeFix.reg *>&1 | Out-Null}
+
+    $startprocessParams = @{
+        FilePath     = "$Env:SystemRoot\REGEDIT.exe"
+        ArgumentList = '/s', 'C:\Users\thede\OneDrive\Documents\PowerShell\TimeFix.reg'
+        Verb         = 'RunAs'
+        PassThru     = $true
+        Wait         = $true
+    }
+    $proc = Start-Process @startprocessParams
+
+    if ($proc.ExitCode -eq 0) {
+        'Success!'
+    }
+    else {
+        "Fail! Exit code: $($Proc.ExitCode)"
+    }
+    
     Write-Output "Done!"
 }
